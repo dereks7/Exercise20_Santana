@@ -14,29 +14,39 @@ The total is $10.50.
 public class ex20_santana
 {
     public static void main( String[] args ) {
-        System.out.println("Enter you height in inches: ");
+        System.out.println("What is the order amount? ");
         Scanner in1 = new Scanner(System.in);
-        String h = in1.nextLine();
-        double n1 = Double.parseDouble(h);
-        System.out.println("Enter you weight in pounds: ");
+        String order = in1.nextLine();
+        double n1 = Double.parseDouble(order);
+        System.out.println("What state do you live in? ");
         Scanner in2 = new Scanner(System.in);
-        String w = in1.nextLine();
-        double n2 = Double.parseDouble(w);
-
-        double bmi = ((n2 / (n1 * n1))*703.00);
-        System.out.println("Your BMI is "+Math.round(bmi*100.0)/100.0+".");
-
-        if (bmi >= 18.5 && bmi <= 25.0)
+        String state = in2.nextLine();
+        System.out.println("What county do you live in? ");
+        Scanner in3 = new Scanner(System.in);
+        String county = in3.nextLine();
+        double tax=0;
+        if(state.equals("Wisconsin")||state.equals("wisconsin"))
         {
-            System.out.println("You are within the ideal weight range.");
+            tax = 0.05;
         }
-        else if (bmi < 18.5)
+        else if(state.equals("Illinois")||state.equals("illinois"))
         {
-            System.out.println("You are underweight. You should see your doctor.");
+            tax = 0.08;
         }
-        else if (bmi > 25)
+        else
         {
-            System.out.println("You are overweight. You should see your doctor.");
+            tax = 0;
         }
+        if((state.equals("Wisconsin")||state.equals("wisconsin")) && (county.equals("Dunn")) || county.equals("dunn"))
+        {
+            tax += 0.004;
+        }
+        else if((state.equals("Wisconsin")||state.equals("wisconsin")) && (county.equals("Eau Claire")) || county.equals("eau claire"))
+        {
+            tax += 0.005;
+        }
+        double tottax = n1*tax;
+        double total = tottax + n1;
+        System.out.printf("The tax is $%.2f.\nThe total is $%.2f.",tottax,total);
     }
 }
